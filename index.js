@@ -9,7 +9,9 @@ const port = 5000;
 
 // Create a user
 server.post('/api/users', (req, res) => {
-  db.find()
+  const userInfo = req.body;
+  console.log(userInfo);
+  db.insert()
     .then()
     .catch();
 });
@@ -27,7 +29,7 @@ server.get('/api/users', (req, res) => {
 
 // Read specific user
 server.get('/api/users/:id', (req, res) => {
-  db.find()
+  db.findById()
     .then()
     .catch();
 });
