@@ -35,14 +35,14 @@ server.get('/api/users/:id', (req, res) => {
 });
 
 // Update a user
-server.put('/api/users', (req, res) => {
+server.put('/api/users/:id', (req, res) => {
   db.update()
     .then()
     .catch();
 });
 
 // Delete a user
-server.delete('/api/users', (req, res) => {
+server.delete('/api/users/:id', (req, res) => {
   db.remove()
     .then()
     .catch();
