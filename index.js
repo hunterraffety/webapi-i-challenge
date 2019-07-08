@@ -48,13 +48,14 @@ server.get('/api/users', (req, res) => {
 // Read specific user
 server.get('/api/users/:id', (req, res) => {
   const id = req.params.id; // specific user id
+
   db.findById(id)
     .then(user => {
       if (user) {
-        // if we have the user pulled in through dynamic id
+        // if we have the matching user pulled in through dynamic id
         res.status(200).json(user);
       } else {
-        // dude ain't there
+        // if the dude ain't there
         res
           .status(404)
           .json({ message: 'The user with the specified ID does not exist.' });
@@ -77,9 +78,23 @@ server.put('/api/users/:id', (req, res) => {
 
 // Delete a user
 server.delete('/api/users/:id', (req, res) => {
-  db.remove()
-    .then()
-    .catch();
+  const { id } = req.params;
+
+  db.remove(id)
+    .then(deleteId => {
+      if (deleteId) {
+        res.status(204).end();
+      } else {
+        res
+          .status(404)
+          .json({ error: 'The user with the specified ID does not exist.' });
+      }
+    })
+    .catch(() => {
+      res
+        .status(500)
+        .json({ message: 'The was an error with deleting the user.' });
+    });
 });
 
 // Initialize the server
