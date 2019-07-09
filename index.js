@@ -1,10 +1,13 @@
 // Dependencies
 const express = require('express');
+const cors = require('cors');
 
 // Express config.
 const db = require('./data/db');
 const server = express();
 server.use(express.json());
+server.use(cors());
+
 const port = 5000;
 
 // Create a user
